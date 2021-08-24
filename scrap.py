@@ -53,17 +53,23 @@ pyautogui.moveTo(startX, startY, duration=1)
 
 while 1:
 	mon1 = {'top': 275, 'left': 540, 'width': 50, 'height': 50}
-	mon2 = {'top': 275, 'left': 440, 'width': 65, 'height': 35}
+	mon2 = {'top': 275, 'left': 557, 'width': 50, 'height': 35}
 	screen1 = read_screen(mon2)
 	#screen2 = read_screen(mon2)
 
 	image1 = np.array(screen1)
+	resize_scaling = 200
+	resize_width = int(image1.shape[1] * resize_scaling/100)
+	resize_hieght = int(image1.shape[0] * resize_scaling/100)
+	resized_dimentions = (resize_width, resize_hieght)
+	image1 =  cv2.resize(image1, resized_dimentions, interpolation=cv2.INTER_AREA)
 	gray = cv2.cvtColor(image1, cv2.COLOR_BGR2GRAY)
+	
 
 	thres = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C,
-							cv2.THRESH_BINARY, 21, 23)
+							cv2.THRESH_BINARY, 17, 23)
 
-	
+
 	custom_config1 = r'--oem 3 --psm 6 outputbase digits'
 	custom_config2 = r'-l eng --psm 6'
 	Value1 = pytesseract.image_to_string(thres, config=custom_config1)
