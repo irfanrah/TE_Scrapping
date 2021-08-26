@@ -55,7 +55,7 @@ pyautogui.moveTo(startX, startY, duration=1)
 time.sleep(2)
 
 while 1:
-	mon1 = {'top': 40, 'left': 135, 'width': 60, 'height': 35}
+	mon1 = {'top': 40, 'left': 120, 'width': 60, 'height': 35}
 	mon2 = {'top': 275, 'left': 557, 'width': 50, 'height': 35}
 	screen1 = read_screen(mon1)
 	#screen2 = read_screen(mon2)
